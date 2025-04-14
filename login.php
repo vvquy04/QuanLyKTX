@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập - Đại học Thủy lợi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-	<style>
-		 * {
+    <style>
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -179,6 +178,13 @@
             text-align: center;
         }
 
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: none;
+        }
+
         @media (max-width: 768px) {
             .login-container {
                 flex-direction: column;
@@ -321,7 +327,7 @@
                 border-radius: 50%;
             }
         }
-	</style>
+    </style>
 </head>
 <body>
     <div class="login-container">
@@ -334,14 +340,15 @@
 
         <div class="login-form">
             <h2 class="form-title">Đăng nhập</h2>
-            <form action="login_process.php" method="POST">
+            <div class="error-message" id="error-message"></div>
+            <form action="login_process.php" method="POST" id="login-form" onsubmit="return validateForm()">
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" id="username" class="form-input" placeholder="Mã đăng nhập" required>
+                    <input type="text" name="username" id="username" class="form-input" placeholder="Mã đăng nhập" >
                 </div>
                 <div class="input-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" id="password" class="form-input" placeholder="Mật khẩu" required>
+                    <input type="password" name="password" id="password" class="form-input" placeholder="Mật khẩu" >
                 </div>
                 <button type="submit" name="login" class="login-btn">
                     <i class="fas fa-sign-in-alt"></i> Đăng nhập
@@ -366,5 +373,26 @@
         <li></li>
         <li></li>
     </ul>
+
+    <script>
+        function validateForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (!username) {
+                errorMessage.textContent = 'Vui lòng nhập mã đăng nhập';
+                errorMessage.style.display = 'block';
+                return false;
+            }
+            if (!password) {
+                errorMessage.textContent = 'Vui lòng nhập mật khẩu';
+                errorMessage.style.display = 'block';
+                return false;
+            }
+            errorMessage.style.display = 'none';
+            return true;
+        }
+    </script>
 </body>
 </html>

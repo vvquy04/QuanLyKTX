@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !$has_contract && $dot_active) {
                         <form method="POST">
                             <div class="form-group">
                                 <label for="maphong">Chọn phòng</label>
-                                <select class="form-control" id="maphong" name="maphong" required>
+                                <select class="form-control" id="maphong" name="maphong" >
                                     <?php
                                     $room_query = mysqli_query($con, "SELECT maphong, sophong, succhua, sothanhvienhientai 
                                                                       FROM phong 
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !$has_contract && $dot_active) {
                             </div>
                             <div class="form-group">
                                 <label for="ngaybatdau">Ngày bắt đầu</label>
-                                <input type="date" class="form-control" id="ngaybatdau" name="ngaybatdau" min="<?php echo $dot_active['ngaybatdau']; ?>" required onchange="updateNgayKetThuc()">
+                                <input type="date" class="form-control" id="ngaybatdau" name="ngaybatdau" min="<?php echo $dot_active['ngaybatdau']; ?>"  onchange="updateNgayKetThuc()">
                             </div>
                             <div class="form-group">
                                 <label for="ngayketthuc">Ngày kết thúc</label>

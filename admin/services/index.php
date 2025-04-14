@@ -138,11 +138,11 @@ include '../../includes/header.php';
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Tên Dịch Vụ:</label>
-                        <input type="text" name="tendichvu" class="form-control" required>
+                        <input type="text" name="tendichvu" class="form-control" >
                     </div>
                     <div class="form-group">
                         <label>Giá Đơn Vị:</label>
-                        <input type="number" name="giadichvu" class="form-control" min="0" step="1000" required>
+                        <input type="number" name="giadichvu" class="form-control" min="0" step="1000" >
                     </div>
                     <div class="form-group">
                         <label>Mô Tả:</label>
@@ -150,7 +150,7 @@ include '../../includes/header.php';
                     </div>
                     <div class="form-group">
                         <label>Trạng Thái:</label>
-                        <select name="trangthai" class="form-control" required>
+                        <select name="trangthai" class="form-control" >
                             <option value="Hoạt động">Hoạt động</option>
                             <option value="Ngừng hoạt động">Ngừng hoạt động</option>
                         </select>
@@ -180,11 +180,11 @@ include '../../includes/header.php';
                     <input type="hidden" name="madichvu" id="edit_madichvu">
                     <div class="form-group">
                         <label>Tên Dịch Vụ:</label>
-                        <input type="text" name="tendichvu" id="edit_tendichvu" class="form-control" required>
+                        <input type="text" name="tendichvu" id="edit_tendichvu" class="form-control" >
                     </div>
                     <div class="form-group">
                         <label>Giá Đơn Vị:</label>
-                        <input type="number" name="giadichvu" id="edit_giadichvu" class="form-control" min="0" step="1000" required>
+                        <input type="number" name="giadichvu" id="edit_giadichvu" class="form-control" min="0" step="1000" >
                     </div>
                     <div class="form-group">
                         <label>Mô Tả:</label>
@@ -192,7 +192,7 @@ include '../../includes/header.php';
                     </div>
                     <div class="form-group">
                         <label>Trạng Thái:</label>
-                        <select name="trangthai" id="edit_trangthai" class="form-control" required>
+                        <select name="trangthai" id="edit_trangthai" class="form-control" >
                             <option value="Hoạt động">Hoạt động</option>
                             <option value="Ngừng hoạt động">Ngừng hoạt động</option>
                         </select>

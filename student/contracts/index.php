@@ -5,7 +5,7 @@ if (!isset($_SESSION['mataikhoan']) || $_SESSION['vaitro'] != 'sinhvien') {
     exit();
 }
 include '../../includes/config.php';
-$page_title = "Quản lý hợp đồng";
+$page_title = "Quản lý hồ sơ";
 include '../../includes/header.php';
 
 $masinhvien = $_SESSION['user']; // Giả định session lưu mã sinh viên
@@ -17,8 +17,8 @@ $current_date = date('Y-m-d');
     <div id="content">
         <?php include '../includes/topbar.php'; ?>
         <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">Quản lý hợp đồng</h1>
-            <p class="mb-4">Danh sách hợp đồng nội trú của bạn. Nếu bạn chưa đăng ký nội trú, hãy kiểm tra mục đăng ký.</p>
+            <h1 class="h3 mb-2 text-gray-800">Quản lý hồ sơ</h1>
+            <p class="mb-4">Danh sách hồ sơ nội trú của bạn. Nếu bạn chưa đăng ký nội trú, hãy kiểm tra mục đăng ký.</p>
 
             <!-- Thông báo -->
             <?php if (isset($_GET['success'])): ?>
@@ -27,10 +27,10 @@ $current_date = date('Y-m-d');
                 <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
             <?php endif; ?>
 
-            <!-- Bảng danh sách hợp đồng -->
+            <!-- Bảng danh sách hồ sơ -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Danh sách hợp đồng</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Danh sách hồ sơ</h6>
                 </div>
                 <div class="card-body">
                     <?php
@@ -45,7 +45,7 @@ $current_date = date('Y-m-d');
                         echo '<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">';
                         echo '<thead>';
                         echo '<tr>';
-                        echo '<th>Mã hợp đồng</th>';
+                        echo '<th>Mã hồ sơ</th>';
                         echo '<th>Số phòng</th>';
                         echo '<th>Ngày bắt đầu</th>';
                         echo '<th>Ngày kết thúc</th>';
@@ -89,12 +89,12 @@ $current_date = date('Y-m-d');
                             echo "</tr>";
                             ?>
 
-                            <!-- Modal Gia hạn Hợp đồng -->
+                            <!-- Modal Gia hạn hồ sơ -->
                             <div class="modal fade" id="renewModal<?php echo $row['mahopdong']; ?>" tabindex="-1" role="dialog" aria-labelledby="renewModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Xin gia hạn hợp đồng <?php echo $row['mahopdong']; ?></h5>
+                                            <h5 class="modal-title">Xin gia hạn hồ sơ <?php echo $row['mahopdong']; ?></h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
                                             </button>
@@ -102,7 +102,7 @@ $current_date = date('Y-m-d');
                                         <form method="POST" action="renew_contract.php?mahopdong=<?php echo urlencode($row['mahopdong']); ?>">
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label>Mã hợp đồng:</label>
+                                                    <label>Mã hồ sơ:</label>
                                                     <input type="text" class="form-control" value="<?php echo htmlspecialchars($row['mahopdong']); ?>" readonly>
                                                 </div>
                                                 <div class="form-group">
@@ -140,7 +140,7 @@ $current_date = date('Y-m-d');
                         echo '</table>';
                         echo '</div>';
                     } else {
-                        echo '<p class="text-center">Bạn chưa có hợp đồng nội trú nào. <a href="register_dorm.php">Đăng ký nội trú ngay</a>.</p>';
+                        echo '<p class="text-center">Bạn chưa có hồ sơ nội trú nào. <a href="register_dorm.php">Đăng ký nội trú ngay</a>.</p>';
                     }
                     ?>
                 </div>

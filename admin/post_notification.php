@@ -73,11 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form method="POST" action="post_notification.php">
                         <div class="form-group">
                             <label for="tieude">Tiêu đề</label>
-                            <input type="text" class="form-control" id="tieude" name="tieude" required>
+                            <input type="text" class="form-control" id="tieude" name="tieude" >
                         </div>
                         <div class="form-group">
                             <label for="noidung">Nội dung</label>
-                            <textarea class="form-control" id="noidung" name="noidung" rows="5" required></textarea>
+                            <textarea class="form-control" id="noidung" name="noidung" rows="5" ></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Đăng thông báo</button>
                     </form>

@@ -5,12 +5,12 @@ if (!isset($_SESSION['mataikhoan']) || $_SESSION['vaitro'] != 'sinhvien') {
     exit();
 }
 include '../../includes/config.php';
-$page_title = "Danh sách hóa đơn";
+$page_title = "Danh sách phí ký túc xá";
 include '../../includes/header.php';
 
 $masinhvien = $_SESSION['user'];
 
-// Truy vấn chỉ lấy thông tin hóa đơn, không lặp chi tiết
+// Truy vấn chỉ lấy thông tin phí ký túc xá, không lặp chi tiết
 $query = mysqli_query($con, "
     SELECT DISTINCT h.mahoadon, h.tongtien, h.ngaytao, h.hanthanhtoan, h.trangthaithanhtoan, p.sophong
     FROM hoadon h 
@@ -26,18 +26,18 @@ $query = mysqli_query($con, "
     <div id="content">
         <?php include '../includes/topbar.php'; ?>
         <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">Danh sách hóa đơn của bạn</h1>
+            <h1 class="h3 mb-2 text-gray-800">Danh sách phí ký túc xá của bạn</h1>
 
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Hóa đơn</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">phí ký túc xá</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Mã hóa đơn</th>
+                                    <th>Mã phí ký túc xá</th>
                                     <th>Phòng</th>
                                     <th>Tổng tiền</th>
                                     <th>Ngày tạo</th>

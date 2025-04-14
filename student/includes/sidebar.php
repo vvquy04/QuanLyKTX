@@ -39,7 +39,7 @@
     <li class="nav-item <?php echo strpos($_SERVER['PHP_SELF'], 'invoices') !== false ? 'active' : ''; ?>">
         <a class="nav-link" href="/student/invoices/index.php">
         <i class="fa-solid fa-receipt"></i>
-            <span>Hóa đơn</span>
+            <span>Phí ký túc xá</span>
         </a>
     </li>
 

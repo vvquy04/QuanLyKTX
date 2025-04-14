@@ -38,14 +38,14 @@ if (!isset($_SESSION['mataikhoan']) || $_SESSION['vaitro'] != 'quanly') {
     <li class="nav-item <?php echo strpos($_SERVER['PHP_SELF'], 'invoices') !== false ? 'active' : ''; ?>">
         <a class="nav-link" href="/admin/invoices/index.php">
             <i class="fa fa-file" aria-hidden="true"></i>
-            <span>Hóa đơn</span>
+            <span>Phí ký túc xá</span>
         </a>
     </li>
     <hr class="sidebar-divider">
     <li class="nav-item <?php echo strpos($_SERVER['PHP_SELF'], 'contracts') !== false ? 'active' : ''; ?>">
         <a class="nav-link" href="/admin/contracts/index.php">
         <i class="fa-solid fa-receipt"></i>
-            <span>Hợp đồng</span>
+            <span>Hồ sơ nội trú</span>
         </a>
     </li>
     <hr class="sidebar-divider">

@@ -6,7 +6,7 @@ if (!isset($_SESSION['mataikhoan']) || $_SESSION['vaitro'] != 'quanly') {
 }
 
 include '../../includes/config.php';
-$page_title = "Quản lý hóa đơn";
+$page_title = "Quản lý phí ký túc xá";
 include '../../includes/header.php';
 
 $maquanly = $_SESSION['user'];
@@ -20,7 +20,7 @@ if (isset($_GET['confirm']) && !empty($_GET['mahoadon'])) {
         header("Location: index.php?success=" . urlencode("Xác nhận thanh toán thành công"));
         exit();
     } else {
-        header("Location: index.php?error=" . urlencode("Hóa đơn không hợp lệ hoặc đã được xử lý"));
+        header("Location: index.php?error=" . urlencode("phí ký túc xá không hợp lệ hoặc đã được xử lý"));
         exit();
     }
 }
@@ -67,7 +67,7 @@ while ($p = mysqli_fetch_array($phong_query)) {
     <div id="content">
         <?php include '../includes/topbar.php'; ?>
         <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">Quản lý hóa đơn</h1>
+            <h1 class="h3 mb-2 text-gray-800">Quản lý phí ký túc xá</h1>
 
             <!-- Hiển thị thông báo -->
             <?php if (isset($_GET['success'])): ?>
@@ -76,22 +76,22 @@ while ($p = mysqli_fetch_array($phong_query)) {
                 <div class="alert alert-danger"><?php echo htmlspecialchars($_GET['error']); ?></div>
             <?php endif; ?>
 
-            <!-- Nút mở modal thêm hóa đơn -->
+            <!-- Nút mở modal thêm phí ký túc xá -->
             <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addInvoiceModal">
-                <i class="fas fa-plus mr-2"></i>Thêm Hóa đơn
+                <i class="fas fa-plus mr-2"></i>Thêm phí ký túc xá
             </button>
 
-            <!-- Bảng danh sách hóa đơn -->
+            <!-- Bảng danh sách phí ký túc xá -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Danh sách hóa đơn</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Danh sách phí ký túc xá</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Mã hóa đơn</th>
+                                    <th>Mã phí ký túc xá</th>
                                     <th>Sinh viên</th>
                                     <th>Phòng</th>
                                     <th>Tổng tiền</th>
@@ -146,12 +146,12 @@ while ($p = mysqli_fetch_array($phong_query)) {
     </div>
 </div>
 
-<!-- Modal Thêm Hóa đơn -->
+<!-- Modal Thêm phí ký túc xá -->
 <div class="modal fade" id="addInvoiceModal" tabindex="-1" role="dialog" aria-labelledby="addInvoiceModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm Hóa đơn</h5>
+                <h5 class="modal-title">Thêm phí ký túc xá</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -161,7 +161,7 @@ while ($p = mysqli_fetch_array($phong_query)) {
                     <!-- Chọn phòng -->
                     <div class="form-group">
                         <label>Chọn phòng:</label>
-                        <select name="maphong" id="maphong" class="form-control" required onchange="updateStudents(); updateRoomPrice();">
+                        <select name="maphong" id="maphong" class="form-control"  onchange="updateStudents(); updateRoomPrice();">
                             <option value="">Chọn phòng</option>
                             <?php
                             $phong_query = mysqli_query($con, "SELECT maphong, sophong FROM phong");
@@ -175,7 +175,7 @@ while ($p = mysqli_fetch_array($phong_query)) {
                     <!-- Chọn sinh viên thanh toán -->
                     <div class="form-group">
                         <label>Chọn sinh viên thanh toán:</label>
-                        <select name="masinhvien" id="masinhvien" class="form-control" required>
+                        <select name="masinhvien" id="masinhvien" class="form-control" >
                             <option value="">Chọn sinh viên</option>
                         </select>
                     </div>
@@ -183,7 +183,7 @@ while ($p = mysqli_fetch_array($phong_query)) {
                     <!-- Ngày hạn thanh toán -->
                     <div class="form-group">
                         <label>Hạn thanh toán:</label>
-                        <input type="date" name="hanthanhtoan" class="form-control" required min="<?php echo date('Y-m-d'); ?>">
+                        <input type="date" name="hanthanhtoan" class="form-control"  min="<?php echo date('Y-m-d'); ?>">
                     </div>
 
                     <!-- Bảng chi tiết dịch vụ -->
@@ -285,7 +285,7 @@ function updateRoomPrice() {
         roomPriceTotal.value = giathue;
         roomPriceValue.value = giathue;
         roomPriceRow.style.display = 'table-row';
-        calculateTotal(null); // Tính lại tổng tiền
+        calculateTotal(null);
     } else {
         roomPriceUnit.textContent = '0 VNĐ';
         roomPriceTotal.value = 0;
@@ -306,7 +306,12 @@ function calculateTotal(input) {
         const thanhtienInput = row.querySelector('.thanhtien');
 
         if (soluongInput && thanhtienInput) {
-            const soluong = parseFloat(soluongInput.value) || 0;
+            let soluong = parseFloat(soluongInput.value) || 0;
+            if (soluong < 0) {
+                alert('Số lượng không được âm!');
+                soluongInput.value = 0;
+                soluong = 0;
+            }
             const thanhtien = soluong * giadichvu;
             thanhtienInput.value = thanhtien;
             total += thanhtien;
@@ -317,4 +322,38 @@ function calculateTotal(input) {
 
     document.getElementById('tongtien').value = total;
 }
+
+// Kiểm tra trước khi submit form
+document.querySelector('form').addEventListener('submit', function(e) {
+    const maphong = document.getElementById('maphong').value;
+    const masinhvien = document.getElementById('masinhvien').value;
+    const hanthanhtoan = document.getElementById('hanthanhtoan').value;
+    const tongtien = parseFloat(document.getElementById('tongtien').value);
+
+    if (!maphong) {
+        alert('Vui lòng chọn phòng!');
+        e.preventDefault();
+        return;
+    }
+    if (!masinhvien) {
+        alert('Vui lòng chọn sinh viên!');
+        e.preventDefault();
+        return;
+    }
+    if (!hanthanhtoan) {
+        alert('Vui lòng nhập hạn thanh toán!');
+        e.preventDefault();
+        return;
+    }
+    if (new Date(hanthanhtoan) < new Date()) {
+        alert('Hạn thanh toán không hợp lệ!');
+        e.preventDefault();
+        return;
+    }
+    if (tongtien <= 0) {
+        alert('Tổng tiền phải lớn hơn 0!');
+        e.preventDefault();
+        return;
+    }
+});
 </script>
